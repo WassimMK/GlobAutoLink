@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobeAutoLink</title>
+    <link rel="stylesheet" href="style3years.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <a href="index.html" class="logo">
+                <div class="logo-container">
+                    <img src="img/logo.png" alt="Logo" class="site-logo">
+                    <span>Globe<span>AutoLink</span></span>
+                </div>
+            </a>
+            
+            <ul class="navbar" id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#cars">Cars</a></li>
+                <li><a href="less3years.html" class="active">-3 years</a></li>
+                <li><a href="#hot">hot sales</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <i class='bx bx-search' id="search-icon"></i>
+            <div class="search-box container">
+                <input type="search" placeholder="Search here...">
+            </div>
+        </div>
+    </header>
+    
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Under 3 Years Old</h1>
+            <p>Cars with modern features and reasonable prices according to your choice.</p>
+            <a href="less3years.html" class="btn">Discover Now</a>
+        </div>
+    </section>
+    <section id="car-search" class="car-search">
+        <div class="search-container">
+           
+            <div class="filter-section">
+                <h2>Search for a Car</h2>
+                <input type="number" id="year" placeholder="Année">
+                <select id="brand" onchange="updateModels()">
+                    <option value="">Sélectionnez une marque</option>
+                </select>
+                <select id="model">
+                    <option value="">Sélectionnez un modèle</option>
+                </select>
+                <input type="number" id="minPrice" placeholder="Prix min">
+                <input type="number" id="maxPrice" placeholder="Prix max">
+                <button onclick="filterCars()">Rechercher</button>
+            </div>
+    
+           
+            <div class="results-section">
+                <ul id="carList" class="car-list"></ul>
+            </div>
+        </div>
+    </section>
+    
+    
+    <script src="main3years.js"></script>
+</body>
+</html>

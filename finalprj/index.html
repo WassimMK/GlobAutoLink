@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobeAutoLink</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <a href="index.html" class="logo">
+                <div class="logo-container">
+                    <img src="img/logo.png" alt="Logo" class="site-logo">
+                    <span>Globe<span>AutoLink</span></span>
+                </div>
+            </a>
+            
+            <ul class="navbar" id="navbar">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#cars">Cars</a></li>
+                <li><a href="less3years.html">-3 years</a></li>
+                <li><a href="#hot">hot sales</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <i class='bx bx-search' id="search-icon"></i>
+            <div class="search-box container">
+                <input type="search" placeholder="Search here...">
+            </div>
+        </div>
+    </header>
+    
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>WELCOME TO GLOBEAUTOLINK</h1>
+            <p>Discover a wide range of vehicles, and enjoy seamless assistance with purchasing and importation.<br> 
+            Simplify your car buying experience with us today!</p>
+            <a href="#cars" class="btn">Discover Now</a>
+        </div>
+    </section>
+    
+    <section class="cars" id="cars">
+        <div class="heading">
+            <span>All Cars</span>
+            <h2>We have all types of cars</h2>
+            <p>Find your perfect vehicle from our wide selection of brands and models.</p>
+        </div>
+        <div class="car-list">
+            <a href="less3years.html">
+            <div class="car-item">
+                <img src="img/car1.png" alt="Car 1">
+                <h3>-3 years old</h3>
+                <p>Perfect for you</p>
+            </div>
+        </a>
+            <div class="car-item">
+                <img src="img/car2.png" alt="Car 2">
+                <h3>Hot Sales</h3>
+                <p>The best in the market</p>
+            </div>
+            <div class="car-item">
+                <img src="img/car3.png" alt="Car 3">
+                <h3>Electric</h3>
+                <p>Try new experiance</p>
+            </div>
+        </div>
+    </section>
+    <section id="car-search" class="car-search">
+        <div class="search-container">
+            
+            <div class="filter-section">
+                <h2>Search for a Car</h2>
+                <input type="number" id="year" placeholder="Année">
+                <select id="brand" onchange="updateModels()">
+                    <option value="">Sélectionnez une marque</option>
+                </select>
+                <select id="model">
+                    <option value="">Sélectionnez un modèle</option>
+                </select>
+                <input type="number" id="minPrice" placeholder="Prix min">
+                <input type="number" id="maxPrice" placeholder="Prix max">
+                <button onclick="filterCars()">Rechercher</button>
+            </div>
+    
+            
+            <div class="results-section">
+                <ul id="carList" class="car-list"></ul>
+            </div>
+        </div>
+    </section>
+    <script src="main.js"></script>
+</body>
+</html>
