@@ -1,13 +1,89 @@
 let search = document.querySelector('.search-box');
-        document.querySelector('#search-icon').onclick = () => {
-            search.classList.toggle('active');
-        };
+document.querySelector('#search-icon').onclick = () => {
+    search.classList.toggle('active'); // Affiche la barre de recherche
+
+    if (search.classList.contains('active')) {
+        populateSearchFilters(); // Remplit les filtres de la barre de recherche
+    }
+ populateSearchBrands(); // Remplit la liste des marques
+};
+
+function populateSearchBrands() {
+    const brandSelect = document.getElementById("search-brand");
+    brandSelect.innerHTML = "<option value=''>Sélectionnez une marque</option>";
+    let brands = [...new Set(cars.map(car => car.brand))]; // Supprime les doublons
+    brands.forEach(brand => {
+        let option = document.createElement("option");
+        option.value = brand;
+        option.textContent = brand;
+        brandSelect.appendChild(option);
+    });
+}
+
+function updateSearchModels() {
+    const brand = document.getElementById("search-brand").value;
+    const modelSelect = document.getElementById("search-model");
+    modelSelect.innerHTML = "<option value=''>Sélectionnez un modèle</option>";
+
+    if (brand) {
+        let models = cars.filter(car => car.brand === brand).map(car => car.model);
+        models.forEach(model => {
+            let option = document.createElement("option");
+            option.value = model;
+            option.textContent = model;
+            modelSelect.appendChild(option);
+        });
+    }
+}
+
+function applySearchFilter() {
+    // Récupérer les valeurs de la search-box
+    const searchYear = document.getElementById("search-year").value;
+    const searchBrand = document.getElementById("search-brand").value;
+    const searchModel = document.getElementById("search-model").value;
+    const searchMinPrice = document.getElementById("search-minPrice").value;
+    const searchMaxPrice = document.getElementById("search-maxPrice").value;
+
+    // Copier ces valeurs dans les filtres de la section du bas
+    document.getElementById("year").value = searchYear;
+    document.getElementById("brand").value = searchBrand;
+    document.getElementById("model").value = searchModel;
+    document.getElementById("minPrice").value = searchMinPrice;
+    document.getElementById("maxPrice").value = searchMaxPrice;
+
+    // Appliquer le filtrage avec filterCars()
+    filterCars();
+
+    // Faire défiler la page jusqu'à la section des résultats
+    document.getElementById("car-search").scrollIntoView({ behavior: "smooth" });
+
+    // Fermer la search-box après l'application du filtre
+    search.classList.remove("active");
+}
+
+
 
         let menuIcon = document.querySelector('#menu-icon');
-        let navbar = document.querySelector('#navbar');
+        let navbar = document.querySelector('.navbar'); // Correction ici
+        
+        // Activer/Désactiver le menu au clic sur l'icône
         menuIcon.onclick = () => {
-            navbar.classList.toggle('active');
+            if (navbar.classList.contains('active')) {
+                navbar.style.maxHeight = '0px'; // Réduit la hauteur progressivement
+                setTimeout(() => navbar.classList.remove('active'), 500); // Attend la fin de l'animation pour retirer la classe
+            } else {
+                navbar.classList.add('active');
+                navbar.style.maxHeight = '300px'; // Ajuste la hauteur selon le contenu
+            }
         };
+        
+        
+        // Fermer le menu si on clique ailleurs sur la page
+        document.addEventListener('click', (e) => {
+            if (!menuIcon.contains(e.target) && !navbar.contains(e.target)) {
+                navbar.classList.remove('active');
+            }
+        });
         const cars = [
             { brand: "Toyota", model: "Corolla", year: 2020, price: 20000, img: "img/corolla.jpg" },
             { brand: "Toyota", model: "Yaris", year: 2021, price: 18000, img: "img/yaris.jpg" },
@@ -52,7 +128,9 @@ let search = document.querySelector('.search-box');
         
         // Fonction de filtrage des voitures
         function filterCars() {
-            const year = document.getElementById("year").value;
+            const currentYear = new Date().getFullYear(); 
+            const minYear = currentYear - 3; 
+            const year = Math.max(document.getElementById("year").value, minYear);
             const brand = document.getElementById("brand").value;
             const model = document.getElementById("model").value;
             const minPrice = document.getElementById("minPrice").value;
@@ -78,8 +156,58 @@ let search = document.querySelector('.search-box');
                         </div>
                     </li>
                 `).join('')
-                : "<li>Aucune voiture trouvée</li>";
+                : "<li>No vehicle found</li>";
         }
         
         // Charger les marques au démarrage
         document.addEventListener("DOMContentLoaded", populateBrands);
+        function populateSearchFilters() {
+            document.getElementById("search-year").value = document.getElementById("year").value;
+            document.getElementById("search-brand").value = document.getElementById("brand").value;
+            document.getElementById("search-model").value = document.getElementById("model").value;
+            document.getElementById("search-minPrice").value = document.getElementById("minPrice").value;
+            document.getElementById("search-maxPrice").value = document.getElementById("maxPrice").value;
+        }
+        function toggleTheme() {
+            let body = document.body;
+            let themeButton = document.getElementById("theme-toggle");
+        
+            // Appliquer ou enlever la classe dark-mode
+            body.classList.toggle("dark-mode");
+        
+            // Sauvegarder le choix de l'utilisateur
+            if (body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                themeButton.textContent = "☀️ Mode Clair";
+            } else {
+                localStorage.setItem("theme", "light");
+                themeButton.textContent = "🌙 Mode Sombre";
+            }
+        }
+        
+        // Appliquer le mode sombre au chargement si nécessaire
+        window.onload = function() {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+                document.getElementById("theme-toggle").textContent = "☀️ Mode Clair";
+            }
+        
+            checkAlerts(); // Vérifier les alertes
+            loadCarOptions(); // Charger les voitures pour la comparaison
+        };
+        
+        // Ajouter l'écouteur d'événement pour le bouton
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
+        });
+        function checkAlerts() {
+            let alerts = JSON.parse(localStorage.getItem("alerts")) || [];
+            let cars = JSON.parse(localStorage.getItem("cars")) || [];
+        
+            let matches = cars.filter(car => alerts.some(alert => car.brand === alert.brand && car.price <= alert.price));
+            
+            if (matches.length > 0) {
+                alert("Une voiture correspondant à vos critères est disponible !");
+            }
+        }
+        

@@ -12,8 +12,8 @@
 
 :root {
     --main-color: gray;
-    --text-color: #020102;
-    --bg-color: #fff;
+    --text-color: #fff;
+    --bg-color: #111;
     --dark-bg: #111;
 }
 
@@ -30,7 +30,7 @@ body {
 
 /* Header */
 header {
-    position: fixed;
+    position: relative;
     width: 100%;
     top: 0;
     left: 0;
@@ -53,8 +53,13 @@ header {
 }
 
 .logo span {
-    color: var(--main-color);
+    color: var(--text-color);
 }
+.auto-link {
+    color: var(--main-color) !important; /* Mets la couleur de ton choix */
+    font-weight: bold; /* Facultatif, pour mettre en valeur */
+}
+
 
 .navbar {
     display: flex;
@@ -77,15 +82,46 @@ header {
 #menu-icon {
     font-size: 24px;
     cursor: pointer;
-    display: none;
+    display: block; /* Rendre l'icône visible sur mobile */
 }
+
+/* Ajout de styles pour le menu responsive */
+@media (max-width: 768px) {
+    .navbar {
+        position: absolute;
+        top: 70px; /* Descend légèrement le menu */
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding:  0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-height: 0; /* Cache le menu au départ */
+        overflow: hidden; /* Empêche le débordement du contenu */
+        transition: max-height 0.5s ease-in-out, padding 0.3s ease-in-out;
+    }
+
+    .navbar.active {
+        max-height: 300px; /* Ajuste selon le nombre d’éléments du menu */
+        padding: 10px 0;
+    }
+
+    #menu-icon {
+        display: block;
+        z-index: 1100; /* S'assurer qu'il reste cliquable */
+    }
+}
+
+
 
 .search-box {
     display: none;
     position: absolute;
     top: 60px;
     right: 20px;
-    background: var(--bg-color);
+    background: var(--text-color);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 10px;
     border-radius: 5px;
@@ -114,7 +150,7 @@ header {
 }
 
 .home-text {
-    color: var(--bg-color);
+    color: var(--text-color);
     max-width: 600px;
 }
 
@@ -161,7 +197,7 @@ header {
 }
 
 .car-item {
-    background: var(--bg-color);
+    background: #555;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -176,17 +212,17 @@ header {
 
 .car-item h3 {
     font-size: 1.2rem;
-    color: var(--main-color);
+    color: var(--bg-color);
 }
 
 .car-item p {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--text-color);
 }
 .car-search {
     text-align: center;
     padding: 50px 20px;
-    background: #f9f9f9;
+    background: var(--bg-color);
 }
 
 .car-search .heading h2 {
@@ -205,7 +241,7 @@ header {
 .filter-container input, .filter-container button {
     padding: 8px;
     font-size: 1rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--main-color);
     border-radius: 5px;
 }
 
@@ -242,7 +278,7 @@ select {
 .filter-section {
     width: 250px;
     padding: 15px;
-    background: #f4f4f4;
+    background: var(--main-color);
     border-radius: 10px;
 }
 
@@ -263,7 +299,7 @@ select {
 }
 
 .filter-section button {
-    background: var(--main-color);
+    background: var(--bg-color);
     color: white;
     cursor: pointer;
     transition: 0.3s;
@@ -281,12 +317,12 @@ select {
 
 .car-info h3 {
     font-size: 1.2rem;
-    color: var(--main-color);
+    color: var(--bg-color);
 }
 
 .car-info p {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--text-color);
 }
 .logo-container {
     display: flex;
@@ -324,3 +360,210 @@ select {
     }
 }
 
+
+.search-box .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background: var(--bg-color);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+}
+
+.form-container .btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--main-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-container .btn:hover {
+    background: #c40000;
+}
+
+.form-container p {
+    margin-top: 10px;
+}
+
+.form-container a {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}
+
+.car-details-container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.car-details-container img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.car-list-container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.my-car-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.my-car-item {
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.my-car-item:hover {
+    transform: scale(1.05);
+}
+
+.my-car-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.my-car-item h3, .my-car-item p {
+    color: var(--text-color);
+    margin: 5px 0;
+}
+
+.btn-delete {
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.compare-container {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+.compare-container select, .compare-container button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.comparison-container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.comparison-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.comparison-container th, .comparison-container td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.comparison-container th {
+    background-color: #333;
+    color: white;
+}
+/* Mode Sombre */
+.dark-mode {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+}
+
+.dark-mode header {
+    background-color: #333;
+}
+
+.dark-mode .nav, 
+.dark-mode .navbar a {
+    color: white;
+}
+
+.dark-mode .car-item,
+.dark-mode .search-container,
+.dark-mode .compare-container,
+.dark-mode .comparison-container {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+
+.dark-mode .btn,
+.dark-mode button {
+    background-color: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+.dark-mode .btn:hover,
+.dark-mode button:hover {
+    background-color: #555;
+}
+
+/* Style du bouton Mode Sombre */
+#theme-toggle {
+    position: flex;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.dark-mode #theme-toggle {
+    background-color: #555;
+    color: black;
+}

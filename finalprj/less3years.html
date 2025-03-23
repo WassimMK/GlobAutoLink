@@ -14,21 +14,38 @@
             <a href="index.html" class="logo">
                 <div class="logo-container">
                     <img src="img/logo.png" alt="Logo" class="site-logo">
-                    <span>Globe<span>AutoLink</span></span>
-                </div>
+                    <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+                 </div>
             </a>
             
             <ul class="navbar" id="navbar">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#cars">Cars</a></li>
+                <li><a href="#car-search">Cars</a></li>
                 <li><a href="less3years.html" class="active">-3 years</a></li>
-                <li><a href="#hot">hot sales</a></li>
+                <li><a href="hotsales.html">hot sales</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="login.html">Login/Signup</a></li>
+                <button id="theme-toggle">🌙 Mode Sombre</button>
+        
             </ul>
             <i class='bx bx-search' id="search-icon"></i>
             <div class="search-box container">
-                <input type="search" placeholder="Search here...">
+                <div class="filter-section">
+                    <h2>Filtrer</h2>
+                    <input type="number" id="search-year" placeholder="year">
+                    <select id="search-brand" onchange="updateSearchModels()">
+                        <option value="">Select brand</option>
+                    </select>
+                    <select id="search-model">
+                        <option value="">Select modèle</option>
+                    </select>
+                    <input type="number" id="search-minPrice" placeholder="min Price">
+                    <input type="number" id="search-maxPrice" placeholder="max Price">
+                    <button onclick="applySearchFilter()">Search</button>
+                </div>
             </div>
+            
+            
         </div>
     </header>
     
@@ -36,7 +53,7 @@
         <div class="home-text">
             <h1>Under 3 Years Old</h1>
             <p>Cars with modern features and reasonable prices according to your choice.</p>
-            <a href="less3years.html" class="btn">Discover Now</a>
+            <a href="#car-search" class="btn">Discover Now</a>
         </div>
     </section>
     <section id="car-search" class="car-search">
@@ -44,16 +61,16 @@
            
             <div class="filter-section">
                 <h2>Search for a Car</h2>
-                <input type="number" id="year" placeholder="Année">
+                <input type="number" id="year" placeholder="year">
                 <select id="brand" onchange="updateModels()">
-                    <option value="">Sélectionnez une marque</option>
+                    <option value="">Select brand</option>
                 </select>
                 <select id="model">
-                    <option value="">Sélectionnez un modèle</option>
+                    <option value="">Select modèle</option>
                 </select>
-                <input type="number" id="minPrice" placeholder="Prix min">
-                <input type="number" id="maxPrice" placeholder="Prix max">
-                <button onclick="filterCars()">Rechercher</button>
+                <input type="number" id="minPrice" placeholder="min Price">
+                <input type="number" id="maxPrice" placeholder="max Price">
+                <button onclick="filterCars()">search</button>
             </div>
     
            

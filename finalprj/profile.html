@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - GlobeAutoLink</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <a href="index.html" class="logo">
+                <div class="logo-container">
+                    <img src="img/logo.png" alt="Logo" class="site-logo">
+                    <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+                </div>
+            </a>
+            
+            <ul class="navbar" id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="less3years.html">-3 years</a></li>
+                <li><a href="hotsales.html">Hot Sales</a></li>
+                <li><a href="#" id="logout-btn">Se déconnecter</a></li>
+            </ul>
+            <i class='bx bx-search' id="search-icon"></i>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <h2>Bienvenue, <span id="user-name"></span> !</h2>
+        <p>Email : <span id="user-email"></span></p>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

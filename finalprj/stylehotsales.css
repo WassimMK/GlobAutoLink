@@ -59,6 +59,8 @@ header {
     color: var(--main-color) !important; /* Mets la couleur de ton choix */
     font-weight: bold; /* Facultatif, pour mettre en valeur */
 }
+
+
 .navbar {
     display: flex;
     gap: 1.5rem;
@@ -357,6 +359,8 @@ select {
         font-size: 1.2rem;
     }
 }
+
+
 .search-box .filter-section {
     display: flex;
     flex-direction: column;
