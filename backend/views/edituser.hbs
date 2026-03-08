@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/edituser.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login / Signup</a></li>
+      {{else}}
+       <li><a href="/favorites">Favorites</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-content" id="profileMenu">
+            {{#if (eq user.role "admin")}}
+              <li><a href="/admin/users">Admin Panel</a></li>
+            {{/if}}
+            <li><a href="/profil">My Profile</a></li>
+            <li>
+              <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      {{/unless}}
+    </ul>
+     <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+
+<main class="edit-container">
+  <h2>Edit User</h2>
+  <form action="/admin/users/edit/{{targetUser.id}}" method="POST" class="edit-form">
+    <label>Full Name</label>
+    <input type="text" name="fullname" value="{{targetUser.fullname}}" required />
+
+    <label>Email</label>
+    <input type="email" name="email" value="{{targetUser.email}}" required />
+
+    <label>Phone</label>
+    <input type="text" name="phonenumber" value="{{targetUser.phonenumber}}" />
+
+    <label>Address</label>
+    <input type="text" name="address" value="{{targetUser.address}}" />
+
+    <label>Wilaya</label>
+    <input type="text" name="wilaya" value="{{targetUser.wilaya}}" />
+
+    <label>Baladiya</label>
+    <input type="text" name="baladiya" value="{{targetUser.baladiya}}" />
+
+    <label>Country</label>
+    <input type="text" name="country" value="{{targetUser.country}}" />
+
+    {{#if (ne targetUser.role "admin")}}
+    <label>Role</label>
+    <select name="role">
+      <option value="user" {{#if (eq targetUser.role "user")}}selected{{/if}}>User</option>
+      <option value="admin" {{#if (eq targetUser.role "admin")}}selected{{/if}}>Admin</option>
+    </select>
+    {{/if}}
+
+    <button type="submit" class="btn">Save Changes</button>
+    <a href="/admin/users" class="btn">⬅ Back to User Management</a>
+  </form>
+</main>
+
+<br><br>
+
+<script src="/main3years.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

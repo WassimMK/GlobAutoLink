@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - GlobeAutoLink</title>
+    <link rel="stylesheet" href="styleprofil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">recently added</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/favorites">favorites</a></li>
+       <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+         <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+    </ul>
+    <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>  
+  </div>
+</header>
+<a href="/offers" class="subscribe-banner full-click">
+  <span class="subscribe-btn">Subscribe now!</span>
+</a>
+
+    <div class="form-container">
+        <form action="/auth/updateProfile" method="POST" class="form form_box_shadow">
+            <h1>Create Your Profile</h1>
+
+            <div class="input-box">
+                <i class='bx bx-user'></i>
+                <span class="input-info">Enter your full name</span>
+                <input type="text" name="fullname" placeholder="Full Name" value="{{user.fullname}}" required>
+            </div>
+            <div class="input-box">
+                <i class='bx bx-envelope'></i>
+                <span class="input-info">Enter your email address</span>
+                <input type="email" name="email" placeholder="Email" value="{{user.email}}" required>
+            </div>
+            <div class="input-box">
+                <i class='bx bx-phone'></i>
+                <span class="input-info">Enter your phone number</span>
+                <input type="tel" name="phone" placeholder="Phone Number" value="{{user.phone}}" required>
+            </div>
+            <div class="input-box">
+                <i class='bx bx-map'></i>
+                <span class="input-info">Enter your address</span>
+                <input type="text" name="address" placeholder="Address" value="{{user.address}}" required>
+            </div>
+            <div class="input-box">
+                <i class='bx bx-map-alt'></i>
+                <span class="input-info">Enter your Wilaya</span>
+                <input type="text" id="wilaya" name="wilaya" placeholder="Enter your wilaya" value="{{user.wilaya}}" required>
+            </div>
+            <div class="input-box">
+                <i class='bx bx-buildings'></i>
+                <span class="input-info">Enter your Baladiya</span>
+                <input type="text" id="baladiya" name="baladiya" placeholder="Enter your baladiya" value="{{user.baladiya}}" required>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="/mainprofil.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html>

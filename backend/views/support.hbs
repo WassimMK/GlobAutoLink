@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Frequently Asked Questions | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/frequentlyquestions.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+        <li><a href="/favorites">Favorites</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-content" id="profileMenu">
+            {{#if (eq user.role "admin")}}
+              <li><a href="/admin/users">Admin</a></li>
+            {{/if}}
+            <li><a href="/profil">My Profile</a></li>
+            <li>
+              <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      {{/unless}}
+    </ul>
+    <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="faq-hero">
+  <h1> Support</h1>
+  <p>Find answers to your questions about buying, selling, and navigating GlobeAutoLink.</p>
+</section>
+
+<!-- FAQ Accordion -->
+<section class="faq-accordion">
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3> How do I create an account?</h3>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p><br>Click "Sign Up" at the top right, fill in your name, email, and password. Once registered, you can post ads and contact sellers.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>How do favorites work?</h3>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p><br>Click the heart icon to save a listing. Access your favorites anytime from your profile.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3> What are the subscription types?</h3>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <ul>
+        <li><strong>Basic:</strong> Free access to listings and messaging.</li>
+        <li><strong>Standard:</strong> Document preparation, Customs advice, Car choice help, Full access to web platform</li>
+        <li><strong>Premium:</strong> Highlighted ads, advanced filters, early access to listings, and more.</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="/frequentlyquestions" class="faq-item" style="display: block; text-decoration: none; border-left: 4px solid var(--main-color); border-radius: 8px; margin-bottom: 15px; background-color: var(--card-bg); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+  <div class="faq-question">
+    <h3> General questions</h3>
+    <i class="fas fa-arrow-right"></i>
+  </div>
+</a>
+
+</section>
+<!-- Contact CTA -->
+<section class="faq-contact">
+  <h3> Still need help?</h3>
+  <p>You can reach us directly using the contact information below:</p>
+
+  <div style="margin-top: 20px;">
+    <p><strong>Email:</strong> <a href="mailto:support@globeautolink.dz">support@globeautolink.dz</a></p>
+    <p><strong>Phone:</strong> +213 779 261 144</p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/213779261144" target="_blank">Click to open chat</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <nav>
+       <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+<script src="/frequentlyquestions.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html>

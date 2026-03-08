@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/styleabout.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently added</a></li>
+      <li><a href="/about"  class="active">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+       <li><a href="/favorites">favorites</a></li>
+        <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+         <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+      {{/unless}}
+    </ul>
+     <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+
+<section class="about-hero">
+  <h1>About GlobeAutoLink</h1>
+  <h2>
+    More than a Marketplace</p>
+    </h2> We’re empowering Algerians to import their cars safely, transparently, and with full support <br> by guiding them through every step of the process.
+  </p>
+</section>
+<br><br>
+<section class="about-section container">
+  <div class="about-card">
+    <h3>Our Story</h3>
+    <p>
+      Born from frustration with Algeria's complex import regulations, GlobeAutoLink started as a mission: help citizens access vehicles legally and affordably.
+    </p>
+  </div>
+
+  <div class="about-card">
+    <h3>Our Mission</h3>
+    <p>
+      We combine digital innovation with real-world expertise to support Algerians from car search to customs clearance.
+    </p>
+  </div>
+
+  <div class="about-card">
+    <h3>What We Offer</h3>
+    <ul>
+      <li>✔️ Legal + Technical Consultations</li>
+      <li>✔️ Step-by-step import guidance</li>
+      <li>✔️ Smart car search tools</li>
+      <li>✔️ Secure online process</li>
+      <li>✔️ Support in every region</li>
+    </ul>
+  </div>
+
+  <div class="about-card">
+    <h3>Our Vision</h3>
+    <p>
+      We want every Algerian citizen and everyone to have access to modern cars, safely, transparently, and with full support at every stage.
+    </p>
+  </div>
+</section>
+<br>
+<section class="how-to-use">
+  <div class="container">
+    <h2>How to Use Our Platform</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1. Create Your Account</h3>
+        <p>Register for free and get access to your personal dashboard to start your import journey.</p>
+      </div>
+      <div class="step">
+        <h3>2. Find Your Car</h3>
+        <p>Use our intelligent search tools to find vehicles from verified international sources that comply with Algerian import regulations.</p>
+      </div>
+      <div class="step">
+        <h3>3.Choose a Consultation Package</h3>
+        <p>Select a support package that fits your needs. Each package includes access to customs, legal, financial, and technical experts.</p>
+      </div>
+      <div class="step">
+        <h3>4. Upload Your Documents</h3>
+        <p>Submit your required documents directly on the platform. Our consultants will review everything step by step.</p>
+      </div>
+      <div class="step">
+        <h3>5. Track Progress & Get Support</h3>
+        <p>Follow every step from approval to delivery with real-time updates and guidance from your assigned team of experts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-gallery">
+  <div class="container">
+    <h2>What You Can Do with GlobeAutoLink</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/img/explore.png" alt="Explore cars">
+        <p>Browse cars from trusted sources abroad</p>
+      </div>
+      <div class="gallery-item">
+        <img src="/img/filtre.png" alt="Apply filters">
+        <p>Use smart filters to refine your search</p>
+      </div>
+  </div>
+</section>
+<br><br>
+<footer>
+  <div class="footer-top">
+    <nav>
+        <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+<script src="/mainabout.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

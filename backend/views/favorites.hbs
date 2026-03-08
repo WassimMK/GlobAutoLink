@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Favorites - GlobeAutoLink</title>
+  <link rel="stylesheet" href="/stylefavorites.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+ <header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+        <li><a href="/favorites" class="active">favorites</a></li>
+        <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+         <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+      {{/unless}}
+    </ul>
+    <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+<a href="/offers" class="subscribe-banner full-click">
+  <span class="subscribe-btn">Subscribe now!</span>
+</a>
+ <div class="hero-banner">
+      <img src="/img/BR3YO.png" alt="Favorites Banner" class="banner-img">
+      <div class="hero-text">
+        <h2>Your Favorite Cars</h2>
+        <p>Find here all the listings you have added to your favorites</p>
+      </div>
+    </div>
+  <section class="under3-container container">
+    <br><br>
+    {{#if cars.length}}
+    <div class="listing-wrapper">
+      <div class="cars-list">
+        {{#each cars}}
+        <a href="/cardetails/{{this.id}}" class="car-card-link">
+          <div class="car-card">
+            <img src="{{this.image}}" alt="{{this.title}}">
+            <div class="info">
+              <h3>{{this.title}}</h3>
+              <p>Price: {{this.price}} DA</p>
+              <p>Year: {{this.year}}</p>
+              <p>Mileage: {{this.mileage}} km</p>
+              <p>Fuel: {{this.fuelType}}</p>
+              <p>Transmission: {{this.transmission}}</p>
+            </div>
+            <div class="fav" data-id="{{this.id}}">
+  <button class="fav-btn" data-fav="true">
+    <i class="fas fa-heart"></i> <!-- ❤️ plein -->
+  </button>
+</div>
+
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+    {{else}}
+    <div class="no-results">
+      No cars have been added to your favorites yet.
+    </div>
+    {{/if}}
+  </section>
+<br><br>
+ <footer>
+  <div class="footer-top">
+    <nav>
+       <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+
+  <script src="/main3years.js"></script>
+  <script src="/darkmode.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/offers.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+        <li><a href="/favorites">Favorites</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-content" id="profileMenu">
+            {{#if (eq user.role "admin")}}
+              <li><a href="/admin/users">Admin</a></li>
+            {{/if}}
+            <li><a href="/profil">My Profile</a></li>
+            <li>
+              <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      {{/unless}}
+    </ul>
+     <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+
+<section class="pricing-section">
+  <h2 class="title">Our Offers</h2>
+  <div class="pricing-cards">
+
+    <!-- Basic Offer -->
+    <div class="pricing-card">
+      <h3>Basic</h3>
+      <p class="price">19 900 DZD</p>
+      <ul class="features">
+        <li><i class="fas fa-check"></i> Legal guide</li>
+        <li><i class="fas fa-check"></i> Checklist</li>
+        <li><i class="fas fa-check"></i> Document review</li>
+        <li><i class="fas fa-check"></i> 1-hour call</li>
+      </ul>
+      <a href="/basicoffer" class="btn">Discover now</a>
+    </div>
+
+    <!-- Personalised Offer -->
+    <div class="pricing-card">
+      <h3>GAL Standard</h3>
+      <p class="price">34 900 DZD</p>
+      <ul class="features">
+        <li><i class="fas fa-check"></i> All Basic benefits</li>
+        <li><i class="fas fa-check"></i> Document preparation</li>
+        <li><i class="fas fa-check"></i> Customs advice</li>
+        <li><i class="fas fa-check"></i> Car choice help</li>
+        <li><i class="fas fa-check"></i> Full access to web platform</li>
+      </ul>
+      <a href="/standardoffer" class="btn">Discover now</a>
+    </div>
+
+    <!-- Premium Offer -->
+    <div class="pricing-card">
+      <h3>GAL Premium</h3>
+      <p class="price">49 900 DZD</p>
+      <ul class="features">
+        <li><i class="fas fa-check"></i> All Standard benefits</li>
+        <li><i class="fas fa-check"></i> Full support from start to port clearance</li>
+        <li><i class="fas fa-check"></i> Chat with experts ( Legal, Customs, Tax)</li>
+        <li><i class="fas fa-check"></i> Priority service</li>
+      </ul>
+      <a href="/premiumoffer" class="btn">Discover now</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- New FAQ Section for Curious Users -->
+<section class="faq-section">
+  <div class="faq-container">
+    <h3>You're just curious?</h3>
+    <p>Check Frequently Asked Questions that most people may ask</p>
+    <a href="/frequentlyquestions" class="btn">View FAQs</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <nav>
+      <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+<script src="/main.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

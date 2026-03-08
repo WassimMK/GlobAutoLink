@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Standard Offer | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/standardoffer.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+        <li><a href="/favorites">Favorites</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-content" id="profileMenu">
+            {{#if (eq user.role "admin")}}
+              <li><a href="/admin/users">Admin</a></li>
+            {{/if}}
+            <li><a href="/profil">My Profile</a></li>
+            <li>
+              <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      {{/unless}}
+    </ul>
+     <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+
+<section class="offer-hero">
+  <div class="container">
+    <h1>GAL Standard Offer</h1>
+    <p>Comprehensive support for your car import needs</p>
+  </div>
+</section>
+
+<section class="offer-details">
+  <div class="container">
+    <div class="offer-content">
+      <div class="offer-description">
+        <h2>What's Included</h2>
+        <p>Our Standard offer provides complete assistance throughout your car import process, combining expert guidance with practical support to ensure a smooth experience.</p>
+        
+        <ul class="features-list">
+          <li><i class="fas fa-check-circle"></i> <strong>All Basic Offer Benefits:</strong> Legal guide, checklist, document review, and consultation</li>
+          <li><i class="fas fa-check-circle"></i> <strong>Document Preparation:</strong> We'll prepare all necessary import documents for you</li>
+          <li><i class="fas fa-check-circle"></i> <strong>Customs Advice:</strong> Detailed guidance on customs procedures and duty estimation</li>
+          <li><i class="fas fa-check-circle"></i> <strong>Car Selection Help:</strong> Expert recommendations based on your needs and budget</li>
+          <li><i class="fas fa-check-circle"></i> <strong>Web Platform Access:</strong> Full access to our online tools and resources</li>
+        </ul>
+      </div>
+
+      <div class="offer-price">
+        <div class="price-card">
+          <h3>Standard Offer</h3>
+          <p class="price">34,900 DZD</p>
+          <a href="#payment" class="btn">Get Started</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-section" id="payment">
+      <h2>Payment Methods</h2>
+      <div class="payment-methods">
+        <div class="payment-method bordered-circle">
+          <i class="fas fa-credit-card"></i>
+          <h3>Edhahabia Card</h3>
+          <p>Secure payment through Algeria Post's Edhahabia card system. We accept all major Edhahabia card types.</p>
+        </div>
+        {{!--
+        <div class="payment-method">
+          <i class="fas fa-university"></i>
+          <h3>Bank Transfer</h3>
+          <p>Direct bank transfer to our corporate account. Details provided after order confirmation.</p>
+        </div>
+        <div class="payment-method">
+          <i class="fas fa-money-bill-wave"></i>
+          <h3>Cash Payment</h3>
+          <p>Available at our offices in Algiers by appointment only.</p>
+        </div>
+        --}}</div>
+    </div>
+
+    <div class="refund-policy">
+      <h2>Refund Policy</h2>
+      <div class="policy-content">
+        <p>Our service fees are non-refundable as they cover consultation and preparatory efforts. Once payment is made and services are rendered, we cannot issue refunds for completed work.</p>
+        <p>In exceptional circumstances, partial refunds may be considered at our discretion on a case-by-case basis. Please contact our support team if you believe your situation warrants special consideration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <nav>
+       <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+<script src="/standardoffer.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

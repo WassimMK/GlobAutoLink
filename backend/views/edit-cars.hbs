@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Car | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/edit-cars.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login / Signup</a></li>
+      {{else}}
+       <li><a href="/favorites">Favorites</a></li>
+         <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin Panel</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+        <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+      {{/unless}}
+    </ul>
+     <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+  
+  <div class="car-header">
+  {{#if image}}
+    <div class="car-image-preview">
+      <img src="{{image}}" alt="Car Image" />
+    </div>
+  {{/if}}
+  <h2 class="title">Edit Car ID: {{car.id}}</h2>
+</div>
+
+  <form action="/admin/cars/edit/{{car.id}}" method="POST" class="edit-form">
+    <label>Brand:</label>
+    <input type="text" name="carBrand" value="{{car.carBrand}}" required>
+
+    <label>Model:</label>
+    <input type="text" name="carModel" value="{{car.carModel}}" required>
+
+    <label>Year:</label>
+    <input type="number" name="year" value="{{car.year}}" required>
+
+    <label>Mileage:</label>
+    <input type="number" name="currentMiles" value="{{car.currentMiles}}" required>
+
+    <label>Price (€):</label>
+    <input type="number" name="price" value="{{car.price}}" required step="0.01">
+
+    <label>Energy:</label>
+    <input type="text" name="energy" value="{{car.energy}}" required>
+
+    <label>Gearbox:</label>
+    <input type="text" name="gearbox" value="{{car.gearbox}}" required>
+
+    <label>Type:</label>
+    <input type="text" name="carType" value="{{car.carType}}" required>
+
+    <label>Country:</label>
+    <input type="text" name="country" value="{{car.country}}" required>
+
+    <div class="form-actions">
+  <button type="submit" class="btn">Save</button>
+ <a href="/admin/cars" class="btn">⬅ Back to cars table</a>
+  <a href="/admin/cars/delete/{{car.id}}" class="btn delete" onclick="return confirm('Are you sure you want to delete this car?')">Delete Car</a>
+
+</div>
+
+  </form>
+  <script src="/main3years.js"></script>
+  <script src="/DarkMode.js"></script>
+</body>
+</html>

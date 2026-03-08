@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Under 3 Years Old</title>
+  <link rel="stylesheet" href="/style3years.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years" >-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+       <li><a href="/favorites">favorites</a></li>
+         <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+         <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+      {{/unless}}
+    </ul>
+   <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+<a href="/offers" class="subscribe-banner full-click">
+  <span class="subscribe-btn">Subscribe now!</span>
+</a>
+
+<section class="hero-banner">
+  <img src="/img/tesla.jpg" alt="Banner" class="banner-img">
+  <div class="hero-text">
+    <h1>Electric</h1>
+    <p>Drive the Future, Go Electric.</p>
+  </div>
+</section>
+
+<section class="under3-container container">
+  <h2><u>Explore vehicles under 3 years old</u></h2>
+
+  <div class="filters-sortbar">
+  <span id="clear-filters" class="clear-all">Clear all</span>
+  
+  <div class="sort-dropdown">
+    <span id="sort-toggle" class="sort-by">Sort by: Newest <i class="fa fa-chevron-down"></i></span>
+    <div id="sort-options" class="sort-options">
+      <div data-sort="newest">Newest</div>
+      <div data-sort="oldest">Oldest</div>
+      <div data-sort="priceLow">Price: Low to High</div>
+      <div data-sort="priceHigh">Price: High to Low</div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="listing-wrapper">
+    <button type="button" class="toggle-filters">Show Filters</button>
+    <form method="GET" action="/electric" class="filters">
+      <select name="carType">
+  <option value="">Car Type</option>
+  <option value="SUV">SUV</option>
+  <option value="Sedan">Sedan</option>
+  <option value="Hatchback">Hatchback</option>
+  <option value="Pickup">Pickup</option>
+  <option value="Coupe">Coupe</option>
+
+  
+</select>
+
+
+   <select name="carBrand" id="brand">
+  <option value="">Brand</option>
+  <option value="Audi">Audi</option>
+  <option value="BMW">BMW</option>
+  <option value="Chery">Chery</option>
+  <option value="Chevrolet">Chevrolet</option>
+  <option value="Citroën">Citroën</option>
+  <option value="Dacia">Dacia</option>
+  <option value="Fiat">Fiat</option>
+  <option value="Ford">Ford</option>
+  <option value="Geely">Geely</option>
+  <option value="Honda">Honda</option>
+  <option value="Hyundai">Hyundai</option>
+  <option value="Jeep">Jeep</option>
+  <option value="Kia">Kia</option>
+  <option value="Mazda">Mazda</option>
+  <option value="Mercedes">Mercedes</option>
+  <option value="Mitsubishi">Mitsubishi</option>
+  <option value="Nissan">Nissan</option>
+  <option value="Opel">Opel</option>
+  <option value="Peugeot">Peugeot</option>
+  <option value="Renault">Renault</option>
+  <option value="Seat">Seat</option>
+  <option value="Skoda">Skoda</option>
+  <option value="Suzuki">Suzuki</option>
+  <option value="Toyota">Toyota</option>
+  <option value="Volkswagen">Volkswagen</option>
+</select>
+
+      <select name="carModel" id="model">
+  <option value="">Model</option>
+  <option value="2008">2008</option>
+  <option value="208">208</option>
+  <option value="500">500</option>
+  <option value="A3">A3</option>
+  <option value="Astra">Astra</option>
+  <option value="Aveo">Aveo</option>
+  <option value="C3">C3</option>
+  <option value="C4">C4</option>
+  <option value="Civic">Civic</option>
+  <option value="Classe A">Classe A</option>
+  <option value="Clio">Clio</option>
+  <option value="Compass">Compass</option>
+  <option value="Coolray">Coolray</option>
+  <option value="Duster">Duster</option>
+  <option value="Fiesta">Fiesta</option>
+  <option value="Focus">Focus</option>
+  <option value="Golf">Golf</option>
+  <option value="i10">i10</option>
+  <option value="i20">i20</option>
+  <option value="i30">i30</option>
+  <option value="Ibiza">Ibiza</option>
+  <option value="Lancer">Lancer</option>
+  <option value="Logan">Logan</option>
+  <option value="Mazda 3">Mazda 3</option>
+  <option value="Megane">Megane</option>
+  <option value="Octavia">Octavia</option>
+  <option value="Panda">Panda</option>
+  <option value="Polo">Polo</option>
+  <option value="Qashqai">Qashqai</option>
+  <option value="Rio">Rio</option>
+  <option value="Serie 1">Serie 1</option>
+  <option value="Sonic">Sonic</option>
+  <option value="Sportage">Sportage</option>
+  <option value="Swift">Swift</option>
+  <option value="Tiggo">Tiggo</option>
+  <option value="Yaris">Yaris</option>
+</select>
+
+
+
+     <div class="year-range">
+  <label>Min Year</label>
+  <input type="number" name="minYear" placeholder="e.g. 2015" min="2015" max="2025" step="1">
+
+  <label>Max Year</label>
+  <input type="number" name="maxYear" placeholder="e.g. 2025" min="2015" max="2025" step="1">
+</div>
+
+  <select name="gearbox">
+    <option value="">Gearbox</option>
+    <option value="Manual">Manual</option>
+    <option value="Automatic">Automatic</option>
+  </select>
+      <div class="price-range">
+        <label>Price Range</label>
+        <input type="number" name="minPrice" placeholder="min" min="0" step="10">
+        <input type="number" name="maxPrice" placeholder="max" min="0" step="10">
+      </div>
+
+      <div class="price-range">
+        <label>Mileage max (km)</label>
+        <input type="number" name="maxMileage" placeholder="e.g. 100000 km">
+      </div>
+
+      <button type="submit">Apply</button>
+    </form>
+
+    <div class="cars-list">
+  {{#each cars}}
+  <a href="/cardetails/{{this.id}}" class="car-card-link">
+    <div class="car-card">
+      <img src="{{this.image}}" alt="{{this.title}}">
+      <div class="info">
+        <h3>{{this.title}}</h3>
+        <p>{{this.year}} • {{this.gearbox}} • {{this.currentMiles}} km • {{this.energy}}</p>
+        <strong>{{this.price}} €</strong>
+       <div class="fav" data-id="{{this.id}}">
+  <button class="fav-btn" data-fav="{{isFavorite}}">
+    <i class="{{#if isFavorite}}fas{{else}}far{{/if}} fa-heart"></i>
+  </button>
+</div>
+
+      </div>
+    </div>
+  </a>
+{{/each}}
+</div>
+{{#unless cars.length}}
+  <div class="no-results-container">
+    <div class="no-results">
+       No matching vehicles found.Please refine your search.
+    </div>
+  </div>
+{{/unless}}
+    <aside class="ads">ads</aside>
+  </div>
+</section>
+<br>
+<br>
+<footer>
+  <div class="footer-top">
+    <nav>
+      <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+<script src="/mainelectric.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

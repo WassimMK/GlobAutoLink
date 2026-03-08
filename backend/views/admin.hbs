@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login / Signup</a></li>
+      {{else}}
+       <li><a href="/favorites">Favorites</a></li>
+         <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin Panel</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+        <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+      {{/unless}}
+    </ul>
+    <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+<br>
+<div class="admin-controls">
+  <a href="/admin/users" class="admin-btn active">Users</a>
+  <a href="/admin/cars" class="admin-btn">Cars</a>
+  <a href="/admin/chats" class="admin-btn">Chats</a>
+</div>
+<main class="admin-container">
+  <div class="table-container"> 
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Role</th>
+          <th>Subscribe</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+        <tr>
+          <td data-label="ID">{{id}}</td>
+          <td data-label="Full Name">{{fullname}}</td>
+          <td data-label="Username">{{username}}</td>
+          <td data-label="Email">{{email}}</td>
+          <td data-label="Phone">{{phonenumber}}</td>
+          <td data-label="Role">{{role}}</td>
+          <td data-label="Subscribe">
+            {{#if (eq subscribed "0")}}
+              ❌ NO
+            {{else}}
+              ✅ Yes ({{subscribed}})
+            {{/if}}
+          </td>
+          <td data-label="Actions" class="actions">
+            <a href="/admin/users/edit/{{id}}" class="btn edit">Edit</a>
+            <a href="/admin/users/{{id}}/favorites" class="btn fav">Favorites</a>
+            <form action="/admin/users/delete/{{id}}" method="POST" style="display:inline;">
+              <button type="submit" class="btn delete" onclick="return confirm('Delete this user?')">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<br><br>
+
+<script src="/main3years.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

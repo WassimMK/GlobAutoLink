@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Chats | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login / Signup</a></li>
+      {{else}}
+       <li><a href="/favorites">Favorites</a></li>
+         <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin Panel</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+        <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+      {{/unless}}
+    </ul>
+    <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+
+<br>
+<div class="admin-controls">
+  <a href="/admin/users" class="admin-btn">Users</a>
+  <a href="/admin/cars" class="admin-btn">Cars</a>
+  <a href="/admin/chats" class="admin-btn active">Chats</a>
+</div>
+
+<div class="table-container">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th style="width: 100px;">Delete</th>
+        <th>ID</th>
+        <th>User</th>
+        <th>Email</th>
+        <th>Registered On</th>
+        <th>Last Message</th>
+        <th>Last Activity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each chats}}
+      <tr class="chat-row" data-href="/admin/chats/{{chat_id}}">
+        <td>
+          <form method="POST" action="/admin/chats/{{chat_id}}/delete" onsubmit="return confirm('Delete this chat?')">
+            <button type="submit" class="delete-btn">
+              <i class="fa fa-trash"></i> Delete
+            </button>
+          </form>
+        </td>
+        <td>{{chat_id}}</td>
+        <td>{{user_name}}</td>
+        <td>{{user_email}}</td>
+        <td class="format-date">{{user_created_at}}</td>
+        <td>{{last_message}}</td>
+        <td class="format-date">{{chat_updated_at}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const rows = document.querySelectorAll('.chat-row');
+    rows.forEach(row => {
+      row.addEventListener('click', function (e) {
+        // Prevent redirect if clicking on a button or form element
+        if (e.target.closest('button') || e.target.closest('form')) return;
+
+        const href = this.getAttribute('data-href');
+        if (href) {
+          window.location.href = href;
+        }
+      });
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const dateCells = document.querySelectorAll('.format-date');
+    dateCells.forEach(cell => {
+      const raw = cell.textContent;
+      const date = new Date(raw);
+      cell.textContent = date.toString().slice(0, 24); // e.g., "Fri Jun 20 2025 16:43:11"
+    });
+  });
+</script>
+<script src="/main3years.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

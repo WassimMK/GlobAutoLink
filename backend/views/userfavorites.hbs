@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Favorites - GlobeAutoLink</title>
+  <link rel="stylesheet" href="/stylefavorites.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+ <header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login / Signup</a></li>
+      {{else}}
+        <li><a href="/favorites" class="active">Favorites</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-content" id="profileMenu">
+            {{#if (eq user.role "admin")}}
+              <li><a href="/admin/users">Admin Panel</a></li>
+            {{/if}}
+            <li><a href="/profil">My Profile</a></li>
+            <li>
+               <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      {{/unless}}
+    </ul>
+    <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+
+<section class="under3-container container">
+
+  <br><br>
+  <h2 class="fav-title">Favorites of {{user.username}}</h2>
+
+  {{#if cars.length}}
+  <div class="listing-wrapper">
+    <div class="cars-list">
+      {{#each cars}}
+      <a href="/cardetails/{{this.id}}" class="car-card-link">
+        <div class="car-card">
+          <img src="{{this.image}}" alt="{{this.title}}">
+          <div class="info">
+            <h3>{{this.title}}</h3>
+            <p>Price: {{this.price}} DA</p>
+            <p>Year: {{this.year}}</p>
+            <p>Mileage: {{this.mileage}} km</p>
+            <p>Fuel: {{this.fuelType}}</p>
+            <p>Transmission: {{this.transmission}}</p>
+          </div>
+          
+          <div class="fav" data-id="{{this.id}}">
+            <button class="fav-btn" data-fav="true">
+              <i class="fas fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+  {{else}}
+  <div class="no-results">
+    You haven't added any cars to your favorites yet.
+  </div>
+  {{/if}}
+  <a href="/admin/users" class="btn">⬅ Back to user management</a>
+</section>
+
+<script src="/main3years.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

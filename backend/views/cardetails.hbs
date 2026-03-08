@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <title>{{car.title}}</title>
+    <link rel="stylesheet" href="/style-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+
+    <ul class="navbar" id="navbar">
+      <li><a href="/" >Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">RECENTLY ADDED</a></li>
+      <li><a href="/cardetails">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+        <li><a href="/favorites">favorites</a></li>
+         <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+         <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+      {{/unless}}
+    </ul>
+
+     <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+   
+ <a href="/offers" class="subscribe-banner full-click">
+  <span class="subscribe-btn">Subscribe now!</span>
+</a>
+
+   <section class="car-details container">
+    <div class="ads-banner">ads</div>
+    <div class="main-content">
+       <div class="gallery">
+  <div class="main-carousel">
+    <button class="carousel-btn left-btn">&#10094;</button>
+    <img id="main-image" class="main-image" src="{{images.[0].image_url}}" alt="Main Car Image">
+    <button class="carousel-btn right-btn">&#10095;</button>
+  </div>
+
+  <div class="car-thumbnails">
+  {{#each images}}
+    <img class="thumbnail" src="{{this.image_url}}" alt="thumb" onclick="changeMainImage('{{this.image_url}}')" />
+  {{/each}}
+</div>
+</div>
+
+        <div class="car-info">
+            <div class="car-title-container">
+  <h2>{{car.title}}</h2>
+  <div class="fav" data-id="{{car.id}}">
+  <button class="fav-btn" data-fav="{{isFavorite}}">
+    <i class="{{#if isFavorite}}fas{{else}}far{{/if}} fa-heart"></i>
+  </button>
+</div>
+
+</div>
+
+            <ul>
+                <li>Brand: {{car.carBrand}}</li>
+                <li>Model: {{car.carModel}}</li>
+                <li>Type: {{car.carType}}</li>
+                <li>Country: {{car.country}}</li>
+                <li>Transmission: {{car.gearbox}}</li>
+                <li>Engine Type: {{car.energy}}</li>
+                <li>Drive: {{car.wd}}</li>
+            </ul>
+            <p class="price">{{car.price}} €</p>
+            <p class="payment-info">Payment available in installments.</p>
+        </div>
+
+        <div class="car-meta">
+            <p><strong>{{car.price}} €</strong></p>
+            <ul>
+                <li><span>Year</span>{{car.year}}</li>
+                <li><span>Gearbox</span>{{car.gearbox}}</li>
+                <li><span>Mileage</span>{{car.currentMiles}} km</li>
+                <li><span>Fuel</span>{{car.energy}}</li>
+            </ul>
+            <!-- Replace the existing msg-btn with this -->
+<button class="msg-btn" onclick="handleMessageClick({{#if user}}'{{user.id}}'{{else}}null{{/if}})">✉️ Send a message</button>
+            <p class="location">{{car.country}}</p>
+        </div>
+    </div>
+
+    <div class="similar-cards">
+  <h3 class="section-title">Similar Cars:</h3>
+  {{#each similarCars}}
+    <a href="/cardetails/{{id}}" class="card-link">
+      <div class="card">
+        <img src="{{#if image}}{{image}}{{else}}/img/default.jpg{{/if}}" alt="{{title}}">
+        <p>{{title}}<br>{{price}} €</p>
+        <div class="msg-btn">View</div>
+      </div>
+    </a>
+  {{/each}}
+</div>
+
+    </div>
+</section>
+<br>
+<br>
+<footer>
+  <div class="footer-top">
+    <nav>
+      <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+<script src="/maincardetails.js"></script>
+<script src="/darkmode.js"></script>
+<script>
+  // Injecte les données dynamiquement dans la page HTML
+  window.imageList = {{{json images}}};
+</script>
+
+</body>
+</html>

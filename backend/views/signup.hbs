@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - GlobeAutoLink</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <a href="/" class="logo">
+                <div class="logo-container">
+                    <img src="/img/logo.png" alt="Logo" class="site-logo">
+                    <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+
+                </div>
+            </a>
+            
+            <ul class="navbar" id="navbar">
+                <li><a href="/" >Home</a></li>
+                <li><a href="#cars">Cars</a></li>
+                <li><a href="/less3years">-3 years</a></li>
+                <li><a href="/hotsales">hot sales</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/login" class="active">Login/Signup</a></li>
+            </ul>
+            <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>  
+</div>            
+        </div>
+    </header>
+    
+    <div class="form-container">
+        <h2>Registration</h2>
+        <form action="/auth/signup" method="POST" id="signup-form" class="form_box_shadow">
+            <input name="name" type="text" id="signup-name" placeholder="username" required>
+            <input name="email" type="email" id="signup-email" placeholder="Email" required>
+            <input name="password" type="password" id="signup-password" placeholder="Password" required>
+            <input name="passwordConfirm" type="password" id="signup-passwordConfirm" placeholder="Confirm your Password" required>
+            <button type="submit" class="btn">Register</button>
+            <p>Already an account ? <a href="/login">login NOW!</a></p>
+        </form>
+        {{#if message}}
+        <h4 class="alert alert-danger mt-4">{{message}}</h4>
+        {{/if}}
+    </div>
+    <script src="main.js"></script>
+    <script src="darkmode.js"></script>
+</body>
+</html>

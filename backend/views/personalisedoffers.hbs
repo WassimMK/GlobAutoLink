@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/personalisedoffers.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+        <li><a href="/favorites">Favorites</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-content" id="profileMenu">
+            {{#if (eq user.role "admin")}}
+              <li><a href="/admin/users">Admin</a></li>
+            {{/if}}
+            <li><a href="/profil">My Profile</a></li>
+            <li>
+              <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      {{/unless}}
+    </ul>
+    <i></i>
+  </div>
+</header>
+<section class="pricing-section">
+  <h2 class="title">Personalised Offers</h2>
+  <div class="pricing-cards">
+
+    <!-- Consultation on the laws Offer -->
+    <div class="pricing-card">
+        <div class="card-content">
+      <h3>Consultation on the laws</h3>
+      <p class="price">499 DA</p>
+      <ul class="features">
+        <li><i class="fas fa-check"></i> Guidance on import/export laws</li>
+        <li><i class="fas fa-check"></i> Up-to-date legal information</li>
+        <li><i class="fas fa-check"></i> Answers to regulatory questions</li>
+      </ul>
+      </div>
+      <a href="/lawoffer" class="btn">Subscribe</a>
+    </div>
+
+    <!-- Customs consultation Offer -->
+    <div class="pricing-card">
+         <div class="card-content">
+      <h3>Customs consultation</h3>
+      <p class="price">499 DA</p>
+      <ul class="features">
+        <li><i class="fas fa-check"></i> Clarification of customs procedures</li>
+        <li><i class="fas fa-check"></i> Advice on import duties and taxes</li>
+        <li><i class="fas fa-check"></i> Help with documentation requirements</li>
+        <li><i class="fas fa-check"></i> Avoid customs delays or penalties</li>
+      </ul>
+      </div>
+      <a href="/customsoffer" class="btn">Subscribe</a>
+    </div>
+
+    <!-- Bank consultation Offer -->
+    <div class="pricing-card">
+        <div class="card-content">
+      <h3>Bank consultation</h3>
+      <p class="price">499 DA</p>
+      <ul class="features">
+        <li><i class="fas fa-check"></i> Help with international payments</li>
+        <li><i class="fas fa-check"></i> Understanding bank charges</li>
+        <li><i class="fas fa-check"></i> Guidance on transfer procedures</li>
+        <li><i class="fas fa-check"></i> Recommendations for trusted banks</li>
+      </ul>
+      </div>
+      <a href="/bankoffer" class="btn">Subscribe</a>
+    </div>
+
+    <!-- Translation and document preparation Offer -->
+    <div class="pricing-card">
+        <div class="card-content">
+      <h3>Translation and document preparation</h3>
+      <p class="price">499 DA</p>
+      <ul class="features">
+        <li><i class="fas fa-check"></i> Professional translation of documents</li>
+        <li><i class="fas fa-check"></i> Formatting and structuring files</li>
+        <li><i class="fas fa-check"></i> Fast delivery in digital format</li>
+        <li><i class="fas fa-check"></i> Certified and official support</li>
+      </ul>
+        </div>
+      <a href="/transdp" class="btn">Subscribe</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <nav>
+       <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+<script src="/main3years.js"></script>
+</body>
+</html>

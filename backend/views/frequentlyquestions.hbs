@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Frequently Asked Questions | GlobeAutoLink</title>
+  <link rel="stylesheet" href="/frequentlyquestions.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login/Signup</a></li>
+      {{else}}
+        <li><a href="/favorites">Favorites</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-content" id="profileMenu">
+            {{#if (eq user.role "admin")}}
+              <li><a href="/admin/users">Admin</a></li>
+            {{/if}}
+            <li><a href="/profil">My Profile</a></li>
+            <li>
+              <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      {{/unless}}
+    </ul>
+    <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+
+<section class="faq-hero">
+  <div class="container">
+    <h1>Frequently Asked Questions</h1>
+    <p>Find answers to common questions about our services and car import process</p>
+  </div>
+</section>
+
+<section class="faq-container">
+  <div class="container">
+    <div class="faq-search">
+      <input type="text" placeholder="Search questions..." id="faqSearch">
+      <i class='bx bx-search'></i>
+    </div>
+
+    <div class="faq-categories">
+      <button class="category-btn active" data-category="all">All Questions</button>
+      <button class="category-btn" data-category="general">General</button>
+      <button class="category-btn" data-category="legal">Legal</button>
+      <button class="category-btn" data-category="customs">Customs</button>
+      <button class="category-btn" data-category="payment">Payment</button>
+    </div>
+
+    <div class="faq-accordion">
+      <!-- General Questions -->
+      <div class="faq-item" data-category="general">
+        <div class="faq-question">
+          <h3>What is GlobeAutoLink?</h3>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+        <div class="faq-answer">
+            <p>GlobeAutoLink is a specialized platform that helps individuals navigate the complex process of importing vehicles to Algeria. We provide legal guidance, customs assistance, and full support at every stage, from finding the right car on our platform to completing the importation process.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="general">
+        <div class="faq-question">
+          <h3>Who can use your services?</h3>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+        <div class="faq-answer">
+          <p>Our services are available to any Algerian citizen or resident who meets the legal requirements for vehicle importation. This includes individuals with valid residency abroad or those who qualify under special import programs.</p>
+        </div>
+      </div>
+
+      <!-- Legal Questions -->
+      <div class="faq-item" data-category="legal">
+        <div class="faq-question">
+          <h3>What are the legal requirements for importing a car?</h3>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+        <div class="faq-answer">
+          <p>The legal requirements include:
+            <ul>
+              <li>- Valid Algerian residency or citizenship.</li>
+              <li>- Proof of legal residence abroad (for certain import programs).</li>
+              <li>- Clean vehicle title and registration.</li>
+              <li>- Compliance with age and emission standards.</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="legal">
+        <div class="faq-question">
+          <h3>Are there restrictions on the age of imported vehicles?</h3>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, currently Algeria restricts the import of vehicles older than 3 years. However, there are exceptions for certain categories like diplomatic personnel or returning residents.</p>
+        </div>
+      </div>
+
+      <!-- Customs Questions -->
+      <div class="faq-item" data-category="customs">
+        <div class="faq-question">
+          <h3>How are customs duties calculated?</h3>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+        <div class="faq-answer">
+            <p>
+                Customs duties are calculated in accordance with customs laws, tax authority regulations, and applicable finance law of 2025.
+                Our Premium service includes a detailed customs estimation.
+            </p>
+        </div>
+      </div>
+
+      <!-- Payment Questions -->
+      <div class="faq-item" data-category="payment">
+        <div class="faq-question">
+          <h3>What payment methods do you accept?</h3>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+        <div class="faq-answer">
+          <p>
+            We accept payment via Edhahabia Card, which is an official debit card issued by Algeria Post (Algérie Poste) for secure online and in-person transactions.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="payment">
+        <div class="faq-question">
+          <h3>Are your service fees refundable?</h3>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+        <div class="faq-answer">
+          <p>Service fees are non-refundable, as they cover consultation and preparatory efforts. In exceptional cases, partial refunds may be considered at our discretion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <nav>
+       <a href="/about">ABOUT GAL</a>
+      <a href="/frequentlyquestions">FAQ</a>
+      <a href="/support">SUPPORT</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574652478776" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/GlobeAutoLink" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/globeautolink/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <img src="/img/logo2.png" alt="Logo" class="footer-logo">
+  </div>
+
+  <div class="footer-bottom">
+    <a href="/privacypolicy" target="_blank">PRIVACY POLICY</a>
+    <span>GLOBE AUTO LINK. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+<script src="/frequentlyquestions.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>

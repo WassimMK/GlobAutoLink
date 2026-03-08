@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Chat - GlobeAutoLink</title>
+  <link rel="stylesheet" href="/stylechat.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <a href="/" class="logo">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Logo" class="site-logo">
+        <span class="logo-text">Globe<span class="auto-link">AutoLink</span></span>
+      </div>
+    </a>
+    <ul class="navbar" id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/less3years">-3 Years</a></li>
+      <li><a href="/recentlyadded">Recently Added</a></li>
+      <li><a href="/about">About</a></li>
+      {{#unless user}}
+        <li><a href="/login">Login / Signup</a></li>
+      {{else}}
+       <li><a href="/favorites">Favorites</a></li>
+         <li class="dropdown">
+    <a href="#" class="dropbtn" id="profileToggle">Profile <i class="fa fa-caret-down"></i></a>
+    <ul class="dropdown-content" id="profileMenu">
+      {{#if (eq user.role "admin")}}
+        <li><a href="/admin/users">Admin Panel</a></li>
+      {{/if}}
+      <li><a href="/profil">My Profile</a></li>
+      <li>
+        <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+      {{/unless}}
+    </ul>
+    <div>
+    {{!-- <button id="toggleDarkMode" class="lang" data-i18n="dark_mode"> Dark Mode </button> --}}
+    <button id="toggleDarkMode" class="lang" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
+    </div>
+  </div>
+</header>
+<main class="chat-container">
+ <div class="chat-header">
+  <div class="seller-info">
+    <img src="/img/default-avatar.png" alt="User" class="seller-avatar">
+    <div>
+      <h3>{{chat_user.username}}</h3>
+      <p class="status online"></p>
+    </div>
+  </div>
+  <div class="return-button">
+    <a href="/admin/chats" class="btn-return">← Return</a>
+  </div>
+</div>
+
+ 
+  <div class="chat-messages" id="chat-messages">
+    {{#each messages}}
+      <div class="message {{#if isUser}}received{{else}}sent{{/if}}">
+
+        <p>{{message}}</p>
+      </div>
+    {{/each}}
+  </div>
+
+  <form id="chat-form" class="chat-input" data-chatid="{{chatId}}">
+    <input type="hidden" name="chatId" value="{{chat_id}}">
+    <button class="attachment-btn" type="button"><i class='bx bx-paperclip'></i></button>
+    <input type="text" id="messageInput" name="message" placeholder="Type your message..." required>
+    <button type="submit" class="send-btn"><i class='bx bx-send'></i></button>
+  </form>
+</main>
+
+<script src="/admin-chat.js"></script>
+<script src="/darkmode.js"></script>
+</body>
+</html>
